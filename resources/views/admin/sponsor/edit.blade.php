@@ -1,29 +1,5 @@
 @extends('layouts.app')
 
-{{--@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection--}}
-
-    <!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -33,14 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DARPAN</title>
+    <title>SB Admin 2 - Buttons</title>
 
     <!-- Custom fonts for this template-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -66,7 +40,7 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="{{url('/home')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
@@ -139,19 +113,7 @@
 
 
         <!-- Divider -->
-
-
-
-        <!-- Nav Item - Pages Collapse Menu -->
-
-
-        <!-- Nav Item - Charts -->
-
-
-        <!-- Nav Item - Tables -->
-
-
-        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -168,21 +130,6 @@
         <div id="content">
 
             <!-- Topbar -->
-            {{--            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">--}}
-
-            {{--                <!-- Sidebar Toggle (Topbar) -->--}}
-            {{--                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">--}}
-            {{--                    <i class="fa fa-bars"></i>--}}
-            {{--                </button>--}}
-
-            {{--                <!-- Topbar Search -->--}}
-
-
-            {{--                <!-- Topbar Navbar -->--}}
-
-
-            {{--            </nav>--}}
-
             <nav class="navbar navbar-expand-md navbar-light bg-white  mb-5 shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/home') }}">
@@ -239,113 +186,65 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">Add Event Details</h1>
 
-                <!-- Content Row -->
-                <div class="row">
 
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Events</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
+                <form action="/sponsor/{{$sponsor->id}}" method="post" >
+                    <div class="row">
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                        <div class="col-lg-4 form-group">
+                            <label>Event Name*</label>
+                            <input type="text" name="name" class="form-control" value="{{$sponsor->name}}">
                         </div>
+
+                        {{--                        <div class="col-lg-4 form-group">--}}
+                        {{--                            <label>Event Pic*</label>--}}
+                        {{--                            <input type="file" name="image" class="">--}}
+                        {{--                        </div>--}}
+                        {{--                        <div class="col-lg-4 form-group">--}}
+                        {{--                            <label>Status*</label>--}}
+                        {{--                            <select class="form-control" name="status"">--}}
+                        {{--                                <option  value="{{$event->status}}>--}}
+                        {{--                                    @if{{$event->status=='1'}})--}}
+                        {{--                                        Active--}}
+                        {{--                                    @else--}}
+                        {{--                                        Block--}}
+                        {{--                                </option>--}}
+
+                        {{--                            </select>--}}
+                        {{--                        </div>--}}
+
                     </div>
+{{--                    <div class="row">--}}
+{{--                        <div class="col-lg-12 form-group">--}}
+{{--                            <label>Event Discription*</label>--}}
+{{--                            <textarea class="form-control" name="description" value="{{$event->description}}">{{$event->description}}</textarea>--}}
+{{--                        </div>--}}
 
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Payment</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                    </div>--}}
+                    <div class=" form-group">
+                        <input type="submit" name="pic" class="btn btn-primary" value="Update Now" style="float:right;">
                     </div>
-
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Registartions</div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="progress progress-sm mr-2">
-                                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pending Requests Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Upcomig Events</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Content Row -->
-
-
-                <!-- Approach -->
             </div>
+            </form>
+
+            <!-- /.container-fluid -->
+
         </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
     </div>
-    <!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Powered by NOVUS</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
+    <!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
@@ -383,13 +282,6 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

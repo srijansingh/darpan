@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('/event','EventController');
+
+    Route::resource('/sponsor','SponsorController');
+
+
+
+    Route::resource('/media','MediaLinkController');
+
+    Route::resource('/student','StudentController');
+});
