@@ -19,6 +19,9 @@ Route::get('/single', function () {
     return view('main.single');
 });
 
+Route::resource('/darpans','SingleEventController');
+
+Route::resource('/register','GuestController');
 
 //Route::resource('/office','OfficialController@index');
 Auth::routes();
@@ -30,9 +33,6 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::resource('/sponsor','SponserController');
 
-    Route::resource('/darpans','SingleEventController');
-
-    Route::resource('/register','GuestController');
 
     Route::resource('/media','MediaLinkController');
 
